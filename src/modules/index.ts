@@ -1,9 +1,13 @@
-import authReducer, { AuthState } from "./auth/duck"
+import authReducer, { AuthState } from "./auth/duck";
+import productsReducer, { ProductsState } from "./products/duck";
 
+//Modules imports/exports centralized here.
 export interface RootState {
-    auth: AuthState,
+  auth: AuthState;
+  products: ProductsState;
 }
 
 export const rootReducer = {
-    auth: authReducer,
-}
+  auth: authReducer,
+  products: productsReducer,
+};
