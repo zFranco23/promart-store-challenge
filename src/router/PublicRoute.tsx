@@ -8,11 +8,11 @@ type Props = {
 
 /**
  *
- * @returns Return a private route base on auth state.
+ * @returns Return a public route base on auth state.
  */
-const PrivateRoute: FC<Props> = ({ children }) => {
+const PublicRoute: FC<Props> = ({ children }) => {
   const isLoggedIn = useAuth();
-  return isLoggedIn ? children : <Navigate to="/login" replace />;
+  return !isLoggedIn ? children : <Navigate to="/" replace />;
 };
 
-export default PrivateRoute;
+export default PublicRoute;
