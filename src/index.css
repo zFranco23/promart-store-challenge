@@ -10,7 +10,7 @@ html {
 *,
 *:before,
 *:after {
-  max-width: 100% !important;
+  max-width: 100%;
   box-sizing: inherit;
 }
 

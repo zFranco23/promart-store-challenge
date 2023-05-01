@@ -6,7 +6,7 @@ import useShoppingCart from "../../../modules/shopping-cart/hooks/useShoppingCar
 import { FromMobileElem, MobileElem } from "../../../utils/responsive";
 
 import homeIcon from "../../../assets/icons/home-icon.png";
-import Logo from "../../components/Logo/Logo";
+import Logo from "../../components/PromartLogo/Logo";
 
 const StyledNavbar = styled.nav`
   position: fixed;
