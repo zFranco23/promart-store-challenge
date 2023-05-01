@@ -1,5 +1,6 @@
 {
   "name": "promart-store-challenge",
+  "homepage": "https://promart-store-chal.web.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
