@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import MainButton from "../../../common/components/MainButton/MainButton";
 import { FromMobileElem, MobileElem } from "../../../utils/responsive";
 import useShoppingCart from "../hooks/useShoppingCart";
-import ShoppingCartItem from "../components/ShoppingCartItem/ShoppingCartItem";
+import ItemsContent from "../components/ItemsContent/ItemsContent";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -13,6 +13,13 @@ const ShoppingCart = () => {
     navigate(-1);
   };
 
+  const hastCartItems = items.length > 0;
+
+  const handleCheckout = () => {
+    if (hastCartItems) console.log("Checkout process");
+    else navigate("/");
+  };
+
   return (
     <div>
       <MobileElem>
@@ -21,7 +28,7 @@ const ShoppingCart = () => {
             <div className="flex relative items-center">
               <div className="absolute left-0 top-0.5">
                 <button onClick={handleGoBack}>
-                  <i className="material-icons">arrow_back</i>
+                  <i className="material-icons text-orange">arrow_back</i>
                 </button>
               </div>
 
@@ -29,22 +36,24 @@ const ShoppingCart = () => {
                 Mi carrito
               </p>
             </div>
-            <p className="font-bold mt-8">
-              ¡Tienes {items.length} productos en tu carrito!
-            </p>
-            <div className="grow max-wfull overflow-auto mt-4 mb-8 p-4">
-              <div className="flex flex-col gap-6">
-                {items.map((sc) => (
-                  <ShoppingCartItem key={`sc-item-${sc.id}`} item={sc} />
-                ))}
-              </div>
-            </div>
+            {hastCartItems && (
+              <p className="font-bold mt-8">
+                ¡Tienes {items.length} producto{items.length > 1 ? "s" : ""} en
+                tu carrito!
+              </p>
+            )}
+            <ItemsContent hasCartItems={hastCartItems} items={items} />
+
             <div>
-              <div className="flex justify-between mb-4">
-                <p>Total</p>
-                <p>{totalPrice}</p>
-              </div>
-              <MainButton className="w-full">¡Lo quiero!</MainButton>
+              {hastCartItems && (
+                <div className="flex justify-between mb-4">
+                  <p>Total</p>
+                  <p className="text-orange font-bold">{totalPrice}</p>
+                </div>
+              )}
+              <MainButton className="w-full" onClick={handleCheckout}>
+                {hastCartItems ? "¡Lo quiero!" : "Ver productos"}
+              </MainButton>
             </div>
           </div>
         </div>

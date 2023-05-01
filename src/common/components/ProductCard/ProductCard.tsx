@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import { Product } from "../../../entities";
 import { fadeIn } from "../../animations/fadeIn";
 import { ShoppingCartItem } from "../../../entities/shopping-cart";
 import { useAppDispatch } from "../../../hooks/store";
 
 import { actions as scActions } from "../../../modules/shopping-cart/duck";
-import { useNavigate } from "react-router-dom";
 
 const ProductWrap = styled.div`
   position: relative;

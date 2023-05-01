@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import Quantity from "../Quantity/Quantity";
+import { useCallback } from "react";
+import { useAppDispatch } from "../../../../hooks/store";
+
+import { actions as scActions } from "../../../shopping-cart/duck";
 import type { ShoppingCartItem as SCItem } from "../../../../entities/shopping-cart";
 
 const CartItem = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   border-radius: 15px;
@@ -9,8 +15,21 @@ const CartItem = styled.div`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 `;
 
+const RemoveCartButton = styled.button`
+  position: absolute;
+  z-index: 2;
+  top: -4px;
+  right: -4px;
+  background-color: #ff6e00;
+  display: flex;
+  alignitems: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.4rem;
+`;
+
 const ImageContainer = styled.div`
-  width: 30%;
+  flex-basis: 25%;
 `;
 
 const ItemImage = styled.img`
@@ -23,11 +42,11 @@ const ItemImage = styled.img`
 const ItemDetails = styled.div`
   background-color: #ebeeef;
   border-radius: 10px;
-  width: 70%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 1rem;
 `;
 
 const ItemName = styled.span`
@@ -47,7 +66,7 @@ const ItemDesc = styled.span`
 `;
 
 const ItemPrice = styled.span`
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
 `;
 
@@ -56,17 +75,47 @@ type Props = {
 };
 
 const ShoppingCartItem = ({ item }: Props) => {
-  const { description, image, price, title, quantity } = item;
+  const { id, description, image, price, title, quantity } = item;
+
+  const dispatch = useAppDispatch();
+
+  const handleAddItem = useCallback(() => {
+    const scItem: SCItem = {
+      ...item,
+      quantity: 1,
+    };
+    dispatch(scActions.addItemToCart(scItem));
+  }, [dispatch, item]);
+
+  const handleRemoveItem = useCallback(() => {
+    const scItem: SCItem = {
+      ...item,
+      quantity: -1,
+    };
+    dispatch(scActions.addItemToCart(scItem));
+  }, [dispatch, item]);
+
+  const handleRemoveCartItem = () => dispatch(scActions.removeItemCart(id));
+
   return (
     <CartItem>
+      <RemoveCartButton onClick={handleRemoveCartItem}>
+        <i className="material-icons text-white text-md">close</i>
+      </RemoveCartButton>
       <ImageContainer>
         <ItemImage src={image} alt="item" />
       </ImageContainer>
       <ItemDetails>
         <ItemName>{title}</ItemName>
         <ItemDesc>{description}</ItemDesc>
-        <ItemPrice>${price}</ItemPrice>
-        {quantity}
+        <div className="flex items-center justify-between mt-4">
+          <ItemPrice>${price}</ItemPrice>
+          <Quantity
+            quantity={quantity}
+            addHandler={handleAddItem}
+            removeHandler={handleRemoveItem}
+          />
+        </div>
       </ItemDetails>
     </CartItem>
   );
