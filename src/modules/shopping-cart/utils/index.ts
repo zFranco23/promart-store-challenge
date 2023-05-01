@@ -6,7 +6,8 @@ const SC_KEY = 'CART';
 
 export const initShoppingCart = () => {
   const sc = getLocalStorageKey(SC_KEY);
-  return sc;
+  if (sc && Array.isArray(sc)) return sc;
+  else return [];
 };
 
 export const saveShoppingCart = (items: ShoppingCartItem[]) => saveLocalStorageKey(SC_KEY, items);
