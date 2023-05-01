@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 
 import Home from "../modules/home/pages/Home";
 import Login from "../modules/auth/pages/Login";
+import ShoppingCart from "../modules/shopping-cart/pages/ShoppingCart";
+
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 import { getSession } from "../modules/auth/duck";
 import { getLocalStorageKey } from "../utils/storage";
@@ -37,6 +39,14 @@ const AppRouter = () => {
             <PublicRoute>
               <Login />
             </PublicRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <ShoppingCart />
+            </PrivateRoute>
           }
         />
       </Routes>

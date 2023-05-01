@@ -11,7 +11,7 @@ type Props = {
  * @returns Return a public route base on auth state.
  */
 const PublicRoute: FC<Props> = ({ children }) => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
   return !isLoggedIn ? children : <Navigate to="/" replace />;
 };
 

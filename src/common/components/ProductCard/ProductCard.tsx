@@ -1,8 +1,14 @@
 import styled from "styled-components";
 import { Product } from "../../../entities";
 import { fadeIn } from "../../animations/fadeIn";
+import { ShoppingCartItem } from "../../../entities/shopping-cart";
+import { useAppDispatch } from "../../../hooks/store";
+
+import { actions as scActions } from "../../../modules/shopping-cart/duck";
+import { useNavigate } from "react-router-dom";
 
 const ProductWrap = styled.div`
+  position: relative;
   height: 100%;
   max-height: 100%;
   display: flex;
@@ -23,6 +29,10 @@ const ProductWrap = styled.div`
 
   &:hover img {
     filter: grayscale(0);
+  }
+
+  &:hover button {
+    display: flex;
   }
 `;
 
@@ -69,16 +79,53 @@ const ProductDescription = styled.p`
   -webkit-box-orient: vertical;
 `;
 
+const AddToCartButton = styled.button`
+  z-index: 2;
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #ff6e00;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  animation: ${fadeIn} 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
 type Props = {
   product: Product;
 };
 const ProductCard = (props: Props) => {
-  const {
-    product: { image, title, price, description },
-  } = props;
+  const { product } = props;
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { image, title, price, description } = product;
+
+  const onAddToCart = () => {
+    const scItem: ShoppingCartItem = {
+      ...product,
+      quantity: 1,
+    };
+    dispatch(scActions.addItemToCart(scItem));
+    navigate("/cart");
+  };
 
   return (
     <ProductWrap>
+      <AddToCartButton onClick={onAddToCart}>
+        <i className="material-icons">add</i>
+      </AddToCartButton>
       <ProductImage src={image} alt={title} />
       <ProductDetails>
         <ProductName>{title}</ProductName>
