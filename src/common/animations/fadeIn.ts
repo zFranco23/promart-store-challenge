@@ -1,4 +1,4 @@
-import { keyframes } from "styled-components";
+import { keyframes } from 'styled-components'
 
 export const fadeIn = keyframes`
     0% {
@@ -10,4 +10,4 @@ export const fadeIn = keyframes`
     100% {
       opacity: 1;
     }
-`;
+`

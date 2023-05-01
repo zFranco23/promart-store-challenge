@@ -1,17 +1,12 @@
-import {
-  getLocalStorageKey,
-  saveLocalStorageKey,
-} from "../../../utils/storage";
+import { getLocalStorageKey, saveLocalStorageKey } from '../../../utils/storage'
 
-import type { ShoppingCartItem } from "../../../entities/shopping-cart";
+import type { ShoppingCartItem } from '../../../entities/shopping-cart'
 
-const SC_KEY = "CART";
+const SC_KEY = 'CART'
 
 export const initShoppingCart = () => {
-  const sc = getLocalStorageKey(SC_KEY);
-  console.log(sc);
-  return sc;
-};
+  const sc = getLocalStorageKey(SC_KEY)
+  return sc
+}
 
-export const saveShoppingCart = (items: ShoppingCartItem[]) =>
-  saveLocalStorageKey(SC_KEY, items);
+export const saveShoppingCart = (items: ShoppingCartItem[]) => saveLocalStorageKey(SC_KEY, items)

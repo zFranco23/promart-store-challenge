@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
 const rotate = keyframes`
     0% {
@@ -7,7 +7,7 @@ const rotate = keyframes`
     100% {
         transform: rotate(360deg);
     }
-`;
+`
 
 const InlineLoader = styled.a`
   width: 48px;
@@ -18,7 +18,7 @@ const InlineLoader = styled.a`
   display: inline-block;
   box-sizing: border-box;
   animation: ${rotate} 1s linear infinite;
-`;
+`
 
 const LoaderWrap = styled.div`
   z-index: 10;
@@ -31,7 +31,7 @@ const LoaderWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const Loader = () => {
   return (
@@ -40,7 +40,7 @@ const Loader = () => {
         <InlineLoader />
       </div>
     </LoaderWrap>
-  );
-};
+  )
+}
 
-export default Loader;
+export default Loader
