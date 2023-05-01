@@ -13,8 +13,8 @@ const CategoriesSection = ({
 }: Props) => {
   return (
     <section>
-      <p className="mb-2 font-bold text-4xl"> Las mejores categorías</p>
-      <div className="flex flex-row w-full gap-3 overflow-auto">
+      <p className="mb-10 font-bold text-4xl"> Las mejores categorías</p>
+      <div className="flex gap-6 overflow-auto">
         {categories?.map((c) => (
           <CategoryItem
             key={c}

@@ -8,7 +8,7 @@ type Props = {
 const Products = ({ products }: Props) => {
   return (
     <section>
-      <p className="mb-2 font-bold text-4xl">Nuestros productos</p>
+      <p className="mb-10 font-bold text-4xl">Nuestros productos</p>
       <div className="grid grid-cols-12 gap-6">
         {products.map((p) => (
           <div

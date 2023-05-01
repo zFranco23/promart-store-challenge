@@ -8,9 +8,7 @@ export type AuthState = {
   isLoggedIn?: boolean;
 };
 
-const initialState: AuthState = {
-  isAuthenticating: false,
-};
+const initialState: AuthState = {};
 
 export const login = createAsyncThunk(
   "LoginUser",

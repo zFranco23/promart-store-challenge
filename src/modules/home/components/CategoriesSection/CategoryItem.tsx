@@ -14,7 +14,7 @@ const CategoryItem = ({ category, onSelectCategory, isSelected }: Props) => {
   };
 
   const innerClassName = classNames(
-    "block bg-neutral10 p-2 rounded-lg font-semibold",
+    "inline bg-neutral10 rounded-lg font-semibold py-2 px-8",
     "transition duration-300 ease-in-out",
     {
       "bg-orange": isSelected,
