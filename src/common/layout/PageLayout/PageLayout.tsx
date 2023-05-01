@@ -1,11 +1,11 @@
-import CenterContent from '../../components/CenterContent/CenterContent'
-import Navbar from '../Navbar/Navbar'
+import CenterContent from '../../components/CenterContent/CenterContent';
+import Navbar from '../Navbar/Navbar';
 
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 /**
  *
@@ -19,7 +19,7 @@ const PageLayout = ({ children }: Props) => {
         <CenterContent>{children}</CenterContent>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PageLayout
+export default PageLayout;

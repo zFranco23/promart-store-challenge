@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-import { Product } from '../../../entities'
-import { fadeIn } from '../../animations/fadeIn'
-import { ShoppingCartItem } from '../../../entities/shopping-cart'
-import { useAppDispatch } from '../../../hooks/store'
+import { Product } from '../../../entities';
+import { fadeIn } from '../../animations/fadeIn';
+import { ShoppingCartItem } from '../../../entities/shopping-cart';
+import { useAppDispatch } from '../../../hooks/store';
 
-import { actions as scActions } from '../../../modules/shopping-cart/duck'
+import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
 const ProductWrap = styled.div`
   position: relative;
@@ -35,7 +35,7 @@ const ProductWrap = styled.div`
   &:hover button {
     display: flex;
   }
-`
+`;
 
 const ProductImage = styled.img`
   display: block;
@@ -44,7 +44,7 @@ const ProductImage = styled.img`
   object-fit: contain;
   transition: all 0.3s ease-in-out;
   filter: grayscale(0.3);
-`
+`;
 
 const ProductDetails = styled.div`
   padding: 1rem;
@@ -53,32 +53,32 @@ const ProductDetails = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-`
+`;
 
 const ProductName = styled.h3`
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
   font-weight: 700;
   color: #333;
-`
+`;
 
 const ProductPrice = styled.p`
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
   color: #333;
-`
+`;
 
 const ProductDescription = styled.p`
   margin: 0 0 0.5rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #666;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-`
+`;
 
 const AddToCartButton = styled.button`
   z-index: 2;
@@ -101,26 +101,26 @@ const AddToCartButton = styled.button`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 type Props = {
-  product: Product
-}
+  product: Product;
+};
 const ProductCard = (props: Props) => {
-  const { product } = props
+  const { product } = props;
+  const { image, title, price, description } = product;
 
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const { image, title, price, description } = product
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onAddToCart = () => {
     const scItem: ShoppingCartItem = {
       ...product,
       quantity: 1,
-    }
-    dispatch(scActions.addItemToCart(scItem))
-    navigate('/cart')
-  }
+    };
+    dispatch(scActions.addItemToCart(scItem));
+    navigate('/cart');
+  };
 
   return (
     <ProductWrap>
@@ -136,7 +136,7 @@ const ProductCard = (props: Props) => {
         </div>
       </ProductDetails>
     </ProductWrap>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

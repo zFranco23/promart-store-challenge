@@ -1,10 +1,10 @@
-import styled from 'styled-components'
-import Quantity from '../Quantity/Quantity'
-import { useCallback } from 'react'
-import { useAppDispatch } from '../../../../hooks/store'
+import styled from 'styled-components';
+import Quantity from '../Quantity/Quantity';
+import { useCallback } from 'react';
+import { useAppDispatch } from '../../../../hooks/store';
 
-import { actions as scActions } from '../../../shopping-cart/duck'
-import type { ShoppingCartItem as SCItem } from '../../../../entities/shopping-cart'
+import { actions as scActions } from '../../../shopping-cart/duck';
+import type { ShoppingCartItem as SCItem } from '../../../../entities/shopping-cart';
 
 const CartItem = styled.div`
   position: relative;
@@ -13,7 +13,7 @@ const CartItem = styled.div`
   border-radius: 15px;
   padding: 1rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-`
+`;
 
 const RemoveCartButton = styled.button`
   position: absolute;
@@ -26,18 +26,18 @@ const RemoveCartButton = styled.button`
   justify-content: center;
   border-radius: 50%;
   padding: 0.4rem;
-`
+`;
 
 const ImageContainer = styled.div`
   flex-basis: 25%;
-`
+`;
 
 const ItemImage = styled.img`
   max-width: 80%;
   margin: 0 auto;
   height: 100px;
   object-fit: contain;
-`
+`;
 
 const ItemDetails = styled.div`
   background-color: #ebeeef;
@@ -47,7 +47,7 @@ const ItemDetails = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-`
+`;
 
 const ItemName = styled.span`
   font-size: 16px;
@@ -55,7 +55,7 @@ const ItemName = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`
+`;
 
 const ItemDesc = styled.span`
   font-size: 14px;
@@ -63,39 +63,39 @@ const ItemDesc = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`
+`;
 
 const ItemPrice = styled.span`
   font-size: 2rem;
   font-weight: 700;
-`
+`;
 
 type Props = {
-  item: SCItem
-}
+  item: SCItem;
+};
 
 const ShoppingCartItem = ({ item }: Props) => {
-  const { id, description, image, price, title, quantity } = item
+  const { id, description, image, price, title, quantity } = item;
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handleAddItem = useCallback(() => {
     const scItem: SCItem = {
       ...item,
       quantity: 1,
-    }
-    dispatch(scActions.addItemToCart(scItem))
-  }, [dispatch, item])
+    };
+    dispatch(scActions.addItemToCart(scItem));
+  }, [dispatch, item]);
 
   const handleRemoveItem = useCallback(() => {
     const scItem: SCItem = {
       ...item,
       quantity: -1,
-    }
-    dispatch(scActions.addItemToCart(scItem))
-  }, [dispatch, item])
+    };
+    dispatch(scActions.addItemToCart(scItem));
+  }, [dispatch, item]);
 
-  const handleRemoveCartItem = () => dispatch(scActions.removeItemCart(id))
+  const handleRemoveCartItem = () => dispatch(scActions.removeItemCart(id));
 
   return (
     <CartItem>
@@ -118,7 +118,7 @@ const ShoppingCartItem = ({ item }: Props) => {
         </div>
       </ItemDetails>
     </CartItem>
-  )
-}
+  );
+};
 
-export default ShoppingCartItem
+export default ShoppingCartItem;

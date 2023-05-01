@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import CenterContent from '../../components/CenterContent/CenterContent'
-import useShoppingCart from '../../../modules/shopping-cart/hooks/useShoppingCart'
-import { FromMobileElem, MobileElem } from '../../../utils/responsive'
+import CenterContent from '../../components/CenterContent/CenterContent';
+import useShoppingCart from '../../../modules/shopping-cart/hooks/useShoppingCart';
+import { FromMobileElem, MobileElem } from '../../../utils/responsive';
 
-import homeIcon from '../../../assets/icons/home-icon.png'
-import Logo from '../../components/PromartLogo/Logo'
+import homeIcon from '../../../assets/icons/home-icon.png';
+import Logo from '../../components/PromartLogo/Logo';
 
 const StyledNavbar = styled.nav`
   position: fixed;
@@ -15,16 +15,16 @@ const StyledNavbar = styled.nav`
   top: 100;
   background: #ff6e00;
   border-bottom: 1px solid red;
-`
+`;
 
 const Navbar = () => {
-  const { items } = useShoppingCart()
+  const { items } = useShoppingCart();
 
   const cartItemsCount = (
     <div className='absolute -right-2 -top-3 bg-black rounded-full w-7 h-7 flex items-center justify-center'>
       <span className='text-white text-lg font-bold'>{items.length}</span>
     </div>
-  )
+  );
 
   return (
     <StyledNavbar>
@@ -36,7 +36,9 @@ const Navbar = () => {
             </button>
           </MobileElem>
           <FromMobileElem>
-            <img src={homeIcon} className='h-8 w-9' />
+            <Link to='/'>
+              <img src={homeIcon} className='h-8 w-9' />
+            </Link>
           </FromMobileElem>
           <MobileElem>
             <Link to='/'>
@@ -52,7 +54,7 @@ const Navbar = () => {
         </div>
       </CenterContent>
     </StyledNavbar>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

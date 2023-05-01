@@ -1,29 +1,29 @@
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 
-import Input from '../../../common/components/Input/Input'
-import MainButton from '../../../common/components/MainButton/MainButton'
-import Loader from '../../../common/components/Loader/Loader'
-import Snackbar from '../../../common/components/Snackbar/Snackbar'
+import Input from '../../../common/components/Input/Input';
+import MainButton from '../../../common/components/MainButton/MainButton';
+import Loader from '../../../common/components/Loader/Loader';
+import Snackbar from '../../../common/components/Snackbar/Snackbar';
 
-import { useAppDispatch } from '../../../hooks/store'
-import { useAppSelector } from '../../../hooks/store'
+import { useAppDispatch } from '../../../hooks/store';
+import { useAppSelector } from '../../../hooks/store';
 
-import { login } from '../duck'
+import { login } from '../duck';
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const isAuthenticating = useAppSelector((state) => state.auth.isAuthenticating)
-  const authError = useAppSelector((state) => state.auth.authError)
-  const dispatch = useAppDispatch()
+  const isAuthenticating = useAppSelector((state) => state.auth.isAuthenticating);
+  const authError = useAppSelector((state) => state.auth.authError);
+  const dispatch = useAppDispatch();
 
   const submitForm = (data: { [key: string]: string }) => {
-    dispatch(login(data))
-  }
+    dispatch(login(data));
+  };
 
   return (
     <div className='flex flex-col items-center justify-center h-screen bg-gray-200'>
@@ -74,7 +74,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -1,16 +1,16 @@
-import classNames from 'classnames'
-import type { FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
+import classNames from 'classnames';
+import type { FieldErrors, UseFormRegisterReturn } from 'react-hook-form';
 
 type props = {
-  name: string
-  label: string
-  formRef: UseFormRegisterReturn
-  placeholder?: string
-  type?: string
-  errors?: FieldErrors
-  className?: string
-  disabled?: boolean
-}
+  name: string;
+  label: string;
+  formRef: UseFormRegisterReturn;
+  placeholder?: string;
+  type?: string;
+  errors?: FieldErrors;
+  className?: string;
+  disabled?: boolean;
+};
 
 function Input(props: props) {
   const {
@@ -22,7 +22,7 @@ function Input(props: props) {
     errors,
     className,
     disabled = false,
-  } = props
+  } = props;
 
   const innerClassName = classNames(
     'focus:outline-none focus:shadow-none focus:border-orange',
@@ -31,7 +31,7 @@ function Input(props: props) {
     'transition duration-300',
     { 'border-error ocus:border-error': errors?.[name] },
     className,
-  )
+  );
 
   return (
     <div className='mb-4 flex-col'>
@@ -52,7 +52,7 @@ function Input(props: props) {
         </p>
       )}
     </div>
-  )
+  );
 }
 
-export default Input
+export default Input;

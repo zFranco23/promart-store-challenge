@@ -1,11 +1,11 @@
-import { Category } from '../../../../entities'
-import CategoryItem from './CategoryItem'
+import { Category } from '../../../../entities';
+import CategoryItem from './CategoryItem';
 
 type Props = {
-  categories?: Category[]
-  selectedCategories: Category[]
-  onSelectCategory: (category: Category) => void
-}
+  categories?: Category[];
+  selectedCategories: Category[];
+  onSelectCategory: (category: Category) => void;
+};
 const CategoriesSection = ({ categories, selectedCategories, onSelectCategory }: Props) => {
   return (
     <section>
@@ -21,7 +21,7 @@ const CategoriesSection = ({ categories, selectedCategories, onSelectCategory }:
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CategoriesSection
+export default CategoriesSection;

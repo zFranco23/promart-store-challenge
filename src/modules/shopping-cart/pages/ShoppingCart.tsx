@@ -1,24 +1,24 @@
-import { useNavigate } from 'react-router-dom'
-import MainButton from '../../../common/components/MainButton/MainButton'
-import { FromMobileElem, MobileElem } from '../../../utils/responsive'
-import useShoppingCart from '../hooks/useShoppingCart'
-import ItemsContent from '../components/ItemsContent/ItemsContent'
+import { useNavigate } from 'react-router-dom';
+import MainButton from '../../../common/components/MainButton/MainButton';
+import { FromMobileElem, MobileElem } from '../../../utils/responsive';
+import useShoppingCart from '../hooks/useShoppingCart';
+import ItemsContent from '../components/ItemsContent/ItemsContent';
 
 const ShoppingCart = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { items, totalPrice } = useShoppingCart()
+  const { items, totalPrice } = useShoppingCart();
 
   const handleGoBack = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
-  const hastCartItems = items.length > 0
+  const hastCartItems = items.length > 0;
 
   const handleCheckout = () => {
-    if (hastCartItems) console.log('Checkout process')
-    else navigate('/')
-  }
+    if (hastCartItems) console.log('Checkout process');
+    else navigate('/');
+  };
 
   return (
     <div>
@@ -57,7 +57,7 @@ const ShoppingCart = () => {
       </MobileElem>
       <FromMobileElem>wwwwq</FromMobileElem>
     </div>
-  )
-}
+  );
+};
 
-export default ShoppingCart
+export default ShoppingCart;

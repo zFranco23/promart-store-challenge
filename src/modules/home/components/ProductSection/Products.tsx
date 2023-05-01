@@ -1,10 +1,10 @@
-import ProductCard from '../../../../common/components/ProductCard/ProductCard'
+import ProductCard from '../../../../common/components/ProductCard/ProductCard';
 
-import type { Product } from '../../../../entities'
+import type { Product } from '../../../../entities';
 
 type Props = {
-  products: Product[]
-}
+  products: Product[];
+};
 const Products = ({ products }: Props) => {
   return (
     <section>
@@ -17,7 +17,7 @@ const Products = ({ products }: Props) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
