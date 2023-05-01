@@ -53,7 +53,7 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(getSession.fulfilled, (state: AuthState, action) => {
       state.isAuthenticating = false;
       if (action.payload.token) {
-        saveLocalStorageKey("P_U_TOKEN", action.payload);
+        saveLocalStorageKey("P_U_TOKEN", action.payload.token);
         state.isLoggedIn = true;
       }
     })

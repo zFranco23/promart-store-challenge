@@ -1,6 +1,8 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../modules/auth/hooks";
+import { getLocalStorageKey } from "../utils/storage";
+
 import Loader from "../common/components/Loader/Loader";
 
 type Props = {
@@ -14,8 +16,14 @@ type Props = {
 const PrivateRoute: FC<Props> = ({ children }) => {
   const { isLoggedIn, isAuthenticating } = useAuth();
 
-  if (!(typeof isAuthenticating == "boolean" && typeof isLoggedIn == "boolean"))
-    return <Loader />;
+  const initialAuthDone = useMemo(() => {
+    const previousToken = getLocalStorageKey("P_U_TOKEN");
+    return previousToken
+      ? typeof isAuthenticating == "boolean" && typeof isLoggedIn == "boolean"
+      : true;
+  }, [isAuthenticating, isLoggedIn]);
+
+  if (!initialAuthDone) return <Loader />;
 
   return isLoggedIn ? children : <Navigate to="/login" replace />;
 };
