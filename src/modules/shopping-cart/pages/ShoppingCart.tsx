@@ -55,7 +55,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </MobileElem>
-      <FromMobileElem>wwwwq</FromMobileElem>
+      <FromMobileElem>{'Shopping cart desktop :)'}</FromMobileElem>
     </div>
   );
 };

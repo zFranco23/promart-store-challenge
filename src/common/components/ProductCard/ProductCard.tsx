@@ -5,6 +5,7 @@ import { Product } from '../../../entities';
 import { fadeIn } from '../../animations/fadeIn';
 import { ShoppingCartItem } from '../../../entities/shopping-cart';
 import { useAppDispatch } from '../../../hooks/store';
+import useMediaQuery from '../../../utils/responsive/useMediaQuery';
 
 import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
@@ -110,6 +111,8 @@ const ProductCard = (props: Props) => {
   const { product } = props;
   const { image, title, price, description } = product;
 
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -119,7 +122,10 @@ const ProductCard = (props: Props) => {
       quantity: 1,
     };
     dispatch(scActions.addItemToCart(scItem));
-    navigate('/cart');
+
+    if (isDesktop) {
+      dispatch(scActions.openCartDrawer());
+    } else navigate('/cart');
   };
 
   return (

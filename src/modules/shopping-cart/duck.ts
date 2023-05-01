@@ -6,16 +6,20 @@ import type { ShoppingCartItem } from '../../entities/shopping-cart';
 
 export type ShoppingCartState = {
   items: ShoppingCartItem[];
+  isOpenCartDrawer: boolean;
 };
 
 const initialState: ShoppingCartState = {
   items: initShoppingCart(),
+  isOpenCartDrawer: false,
 };
 
 //Actions
 export const actions = {
   addItemToCart: createAction<ShoppingCartItem>('AddItemToCart'),
   removeItemCart: createAction<number>('RemoveItemCart'),
+  openCartDrawer: createAction('OpenCartDrawer'),
+  closeCartDrawer: createAction('CloseCartDrawer'),
 };
 
 const shoppingCartReducer = createReducer(initialState, (builder) => {
@@ -38,6 +42,12 @@ const shoppingCartReducer = createReducer(initialState, (builder) => {
       const itemId = action.payload;
       state.items = state.items.filter((el) => el.id != itemId);
       saveShoppingCart(state.items);
+    })
+    .addCase(actions.openCartDrawer, (state: ShoppingCartState) => {
+      state.isOpenCartDrawer = true;
+    })
+    .addCase(actions.closeCartDrawer, (state: ShoppingCartState) => {
+      state.isOpenCartDrawer = false;
     });
 });
 

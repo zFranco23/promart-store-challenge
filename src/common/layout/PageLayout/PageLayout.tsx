@@ -1,3 +1,4 @@
+import CartDrawer from '../../../modules/shopping-cart/components/CartDrawer/CartDrawer';
 import CenterContent from '../../components/CenterContent/CenterContent';
 import Navbar from '../Navbar/Navbar';
 
@@ -15,6 +16,7 @@ const PageLayout = ({ children }: Props) => {
   return (
     <div className='inline-block'>
       <Navbar />
+      <CartDrawer />
       <div className='w-full mt-20'>
         <CenterContent>{children}</CenterContent>
       </div>

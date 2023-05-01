@@ -8,7 +8,7 @@ import Products from '../components/ProductSection/Products';
 import { useProducts, useCategories } from '../../products/hooks/index';
 import { useAppDispatch, useAppSelector } from '../../../hooks/store';
 
-import { actions as HomeActions } from '../duck';
+import { actions as homeActions } from '../duck';
 import type { Category, Product } from '../../../entities';
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
 
   const onSelectCategory = useCallback(
     (c: Category) => {
-      dispatch(HomeActions.updateCategoriesSelected(c));
+      dispatch(homeActions.updateCategoriesSelected(c));
     },
     [dispatch],
   );
