@@ -1,7 +1,8 @@
-import CenterContent from "../../components/CenterContent/CenterContent";
-import Navbar from "../Navbar/Navbar";
+import CartDrawer from '../../../modules/shopping-cart/components/CartDrawer/CartDrawer';
+import CenterContent from '../../components/CenterContent/CenterContent';
+import Navbar from '../Navbar/Navbar';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -13,9 +14,10 @@ type Props = {
  */
 const PageLayout = ({ children }: Props) => {
   return (
-    <div className="inline-block">
+    <div className='inline-block'>
       <Navbar />
-      <div className="w-full mt-20">
+      <CartDrawer />
+      <div className='w-full mt-20'>
         <CenterContent>{children}</CenterContent>
       </div>
     </div>

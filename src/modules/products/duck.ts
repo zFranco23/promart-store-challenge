@@ -1,9 +1,9 @@
-import { createAsyncThunk, createReducer, isAnyOf } from "@reduxjs/toolkit";
-import httpClient from "../../http/http";
-import listenerMiddleware from "../../store/middlewares/listener";
-import { getSession, login } from "../auth/duck";
+import { createAsyncThunk, createReducer, isAnyOf } from '@reduxjs/toolkit';
+import httpClient from '../../http/http';
+import listenerMiddleware from '../../store/middlewares/listener';
+import { getSession, login } from '../auth/duck';
 
-import type { Category, Product } from "../../entities";
+import type { Category, Product } from '../../entities';
 
 export type ProductsState = {
   isFetchingProducts?: boolean;
@@ -23,13 +23,13 @@ listenerMiddleware.startListening({
   },
 });
 
-export const fetchProducts = createAsyncThunk("FetchProducts", async () => {
-  const { data } = await httpClient.get<Product[]>("/products");
+export const fetchProducts = createAsyncThunk('FetchProducts', async () => {
+  const { data } = await httpClient.get<Product[]>('/products');
   return data;
 });
 
-export const fetchCategories = createAsyncThunk("FetchCategories", async () => {
-  const { data } = await httpClient.get<Category[]>("/products/categories");
+export const fetchCategories = createAsyncThunk('FetchCategories', async () => {
+  const { data } = await httpClient.get<Category[]>('/products/categories');
   return data;
 });
 

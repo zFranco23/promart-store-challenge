@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
-import Input from "../../../common/components/Input/Input";
-import MainButton from "../../../common/components/MainButton/MainButton";
-import Loader from "../../../common/components/Loader/Loader";
-import Snackbar from "../../../common/components/Snackbar/Snackbar";
+import Input from '../../../common/components/Input/Input';
+import MainButton from '../../../common/components/MainButton/MainButton';
+import Loader from '../../../common/components/Loader/Loader';
+import Snackbar from '../../../common/components/Snackbar/Snackbar';
 
-import { useAppDispatch } from "../../../hooks/store";
-import { useAppSelector } from "../../../hooks/store";
+import { useAppDispatch } from '../../../hooks/store';
+import { useAppSelector } from '../../../hooks/store';
 
-import { login } from "../duck";
+import { login } from '../duck';
 
 const Login = () => {
   const {
@@ -17,9 +17,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const isAuthenticating = useAppSelector(
-    (state) => state.auth.isAuthenticating
-  );
+  const isAuthenticating = useAppSelector((state) => state.auth.isAuthenticating);
   const authError = useAppSelector((state) => state.auth.authError);
   const dispatch = useAppDispatch();
 
@@ -28,49 +26,47 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+    <div className='flex flex-col items-center justify-center h-screen bg-gray-200'>
       {isAuthenticating && <Loader />}
-      {<Snackbar type="error" message={authError} />}
-      <div className="bg-white border-2 border-neutral20 rounded-lg p-8 w-11/12 max-w-lg">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">
-          Iniciar sesión
-        </h1>
+      {<Snackbar type='error' message={authError} />}
+      <div className='bg-white border-2 border-neutral20 rounded-lg p-8 w-11/12 max-w-lg'>
+        <h1 className='text-4xl font-bold text-gray-900 mb-6'>Iniciar sesión</h1>
         <form noValidate>
-          <div className="mb-4">
+          <div className='mb-4'>
             <Input
               disabled={isAuthenticating}
-              name="username"
-              label="Usuario"
-              placeholder="Usuario"
+              name='username'
+              label='Usuario'
+              placeholder='Usuario'
               errors={errors}
-              formRef={register("username", {
-                required: "Campo obligatorio",
+              formRef={register('username', {
+                required: 'Campo obligatorio',
               })}
             />
           </div>
-          <div className="mb-6">
+          <div className='mb-6'>
             <Input
               disabled={isAuthenticating}
-              type="password"
-              name="password"
-              label="Contraseña"
-              placeholder="Contraseña"
+              type='password'
+              name='password'
+              label='Contraseña'
+              placeholder='Contraseña'
               errors={errors}
-              formRef={register("password", {
+              formRef={register('password', {
                 required: {
                   value: true,
-                  message: "Campo requerido",
+                  message: 'Campo requerido',
                 },
                 minLength: {
                   value: 6,
-                  message: "Mínimo 6 caracteres",
+                  message: 'Mínimo 6 caracteres',
                 },
               })}
             />
           </div>
           <MainButton
             disabled={isAuthenticating}
-            className="w-full"
+            className='w-full'
             onClick={handleSubmit(submitForm)}
           >
             Iniciar sesión

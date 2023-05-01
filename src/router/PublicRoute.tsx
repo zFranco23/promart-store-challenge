@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../modules/auth/hooks";
+import { FC } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../modules/auth/hooks';
 
 type Props = {
   children: JSX.Element;
@@ -12,7 +12,7 @@ type Props = {
  */
 const PublicRoute: FC<Props> = ({ children }) => {
   const { isLoggedIn } = useAuth();
-  return !isLoggedIn ? children : <Navigate to="/" replace />;
+  return !isLoggedIn ? children : <Navigate to='/' replace />;
 };
 
 export default PublicRoute;

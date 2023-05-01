@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 const Wrapper = styled.main`
   padding: 1rem;
   max-width: 100% !important;

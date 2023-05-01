@@ -1,11 +1,13 @@
-import styled from "styled-components";
-import { Product } from "../../../entities";
-import { fadeIn } from "../../animations/fadeIn";
-import { ShoppingCartItem } from "../../../entities/shopping-cart";
-import { useAppDispatch } from "../../../hooks/store";
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-import { actions as scActions } from "../../../modules/shopping-cart/duck";
-import { useNavigate } from "react-router-dom";
+import { Product } from '../../../entities';
+import { fadeIn } from '../../animations/fadeIn';
+import { ShoppingCartItem } from '../../../entities/shopping-cart';
+import { useAppDispatch } from '../../../hooks/store';
+import useMediaQuery from '../../../utils/responsive/useMediaQuery';
+
+import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
 const ProductWrap = styled.div`
   position: relative;
@@ -70,7 +72,7 @@ const ProductPrice = styled.p`
 
 const ProductDescription = styled.p`
   margin: 0 0 0.5rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #666;
   overflow: hidden;
   display: -webkit-box;
@@ -107,10 +109,12 @@ type Props = {
 };
 const ProductCard = (props: Props) => {
   const { product } = props;
+  const { image, title, price, description } = product;
+
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { image, title, price, description } = product;
 
   const onAddToCart = () => {
     const scItem: ShoppingCartItem = {
@@ -118,18 +122,21 @@ const ProductCard = (props: Props) => {
       quantity: 1,
     };
     dispatch(scActions.addItemToCart(scItem));
-    navigate("/cart");
+
+    if (isDesktop) {
+      dispatch(scActions.openCartDrawer());
+    } else navigate('/cart');
   };
 
   return (
     <ProductWrap>
       <AddToCartButton onClick={onAddToCart}>
-        <i className="material-icons">add</i>
+        <i className='material-icons'>add</i>
       </AddToCartButton>
       <ProductImage src={image} alt={title} />
       <ProductDetails>
         <ProductName>{title}</ProductName>
-        <div className="bg-neutral10 rounded-2xl p-2">
+        <div className='bg-neutral10 rounded-2xl p-2'>
           <ProductDescription>{description}</ProductDescription>
           <ProductPrice>S/. {price}</ProductPrice>
         </div>

@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // import usePrevious from "../../../hooks/usePrevious";
 
 type Props = {
-  type: "success" | "error" | "neutral";
+  type: 'success' | 'error' | 'neutral';
   message?: string;
   timeout?: number;
 };
 
 type StyledProps = {
-  type: "success" | "error" | "neutral";
+  type: 'success' | 'error' | 'neutral';
   show: boolean;
 };
 
 const SNACK_BG_COLORS = {
-  success: "#4caf50",
-  error: "#f44336",
-  neutral: "#FDFDFD",
+  success: '#4caf50',
+  error: '#f44336',
+  neutral: '#FDFDFD',
 };
 
 const StyledSnackbar = styled.div<StyledProps>`
@@ -30,9 +30,9 @@ const StyledSnackbar = styled.div<StyledProps>`
   font-weigth: bold;
   z-index: 9999;
   transition: all 0.3s ease-in-out;
-  left: ${(props) => (props.show ? "20px" : "-100%")};
+  left: ${(props) => (props.show ? '20px' : '-100%')};
   opacity: ${(props) => (props.show ? 1 : 0)};
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
 `;
 
 const Snackbar = (props: Props) => {
@@ -57,7 +57,7 @@ const Snackbar = (props: Props) => {
 
   return (
     <StyledSnackbar show={show} type={type}>
-      <p className="font-bold">{message}</p>
+      <p className='font-bold'>{message}</p>
     </StyledSnackbar>
   );
 };
