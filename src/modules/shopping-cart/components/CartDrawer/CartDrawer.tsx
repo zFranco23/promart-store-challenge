@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
 
-import { actions as scActions } from '../../duck';
 import useShoppingCart from '../../hooks/useShoppingCart';
 import ItemsContent from '../ItemsContent/ItemsContent';
 import MainButton from '../../../../common/components/MainButton/MainButton';
+import { priceFormatter } from '../../../../utils/number';
+import { useCurrency } from '../../../currency/hooks/useCurrency';
+
+import { actions as scActions } from '../../duck';
 
 const StyledDrawer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 40rem;
+  width: 42.5rem;
   height: 100vh;
   background-color: #ffffff;
   z-index: 10;
@@ -30,6 +33,7 @@ const Overlay = styled.div`
 
 const CartDrawer = () => {
   const { items, totalPrice } = useShoppingCart();
+  const currency = useCurrency();
   const isOpen = useAppSelector((state) => state.shoppingCart.isOpenCartDrawer);
   const dispatch = useAppDispatch();
 
@@ -71,7 +75,9 @@ const CartDrawer = () => {
                 {hastCartItems && (
                   <div className='flex justify-between mb-4'>
                     <p>Total</p>
-                    <p className='text-orange font-bold'>{totalPrice}</p>
+                    <p className='text-orange font-bold'>
+                      {priceFormatter(totalPrice, currency ? currency.symbol : '')}
+                    </p>
                   </div>
                 )}
                 <MainButton className='w-full' onClick={handleCheckout}>

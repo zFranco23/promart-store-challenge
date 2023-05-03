@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import Quantity from '../Quantity/Quantity';
 import { useCallback } from 'react';
 import { useAppDispatch } from '../../../../hooks/store';
+import { useCurrency } from '../../../currency/hooks/useCurrency';
 
 import { actions as scActions } from '../../../shopping-cart/duck';
 import type { ShoppingCartItem as SCItem } from '../../../../entities/shopping-cart';
+import { priceFormatter } from '../../../../utils/number';
 
 const CartItem = styled.div`
   position: relative;
@@ -77,6 +79,7 @@ type Props = {
 const ShoppingCartItem = ({ item }: Props) => {
   const { id, description, image, price, title, quantity } = item;
 
+  const currency = useCurrency();
   const dispatch = useAppDispatch();
 
   const handleAddItem = useCallback(() => {
@@ -109,7 +112,7 @@ const ShoppingCartItem = ({ item }: Props) => {
         <ItemName>{title}</ItemName>
         <ItemDesc>{description}</ItemDesc>
         <div className='flex items-center justify-between mt-4'>
-          <ItemPrice>${price}</ItemPrice>
+          <ItemPrice>{priceFormatter(price, currency ? currency.symbol : '')}</ItemPrice>
           <Quantity
             quantity={quantity}
             addHandler={handleAddItem}

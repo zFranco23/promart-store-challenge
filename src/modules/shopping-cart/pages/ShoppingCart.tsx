@@ -4,11 +4,14 @@ import { FromMobileElem, MobileElem } from '../../../utils/responsive';
 import useShoppingCart from '../hooks/useShoppingCart';
 import ItemsContent from '../components/ItemsContent/ItemsContent';
 
+import { priceFormatter } from '../../../utils/number';
+import { useCurrency } from '../../currency/hooks/useCurrency';
+
 const ShoppingCart = () => {
   const navigate = useNavigate();
 
   const { items, totalPrice } = useShoppingCart();
-
+  const currency = useCurrency();
   const handleGoBack = () => {
     navigate(-1);
   };
@@ -45,7 +48,9 @@ const ShoppingCart = () => {
               {hastCartItems && (
                 <div className='flex justify-between mb-4'>
                   <p>Total</p>
-                  <p className='text-orange font-bold'>{totalPrice}</p>
+                  <p className='text-orange font-bold'>
+                    {priceFormatter(totalPrice, currency ? currency.symbol : '')}
+                  </p>
                 </div>
               )}
               <MainButton className='w-full' onClick={handleCheckout}>

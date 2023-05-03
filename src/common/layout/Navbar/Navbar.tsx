@@ -8,7 +8,6 @@ import { FromMobileElem, MobileElem } from '../../../utils/responsive';
 import { useAppDispatch } from '../../../hooks/store';
 
 import useShoppingCart from '../../../modules/shopping-cart/hooks/useShoppingCart';
-import homeIcon from '../../../assets/icons/home-icon.png';
 
 import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
@@ -18,6 +17,7 @@ const StyledNavbar = styled.nav`
   width: 100%;
   top: 100;
   background: #ff6e00;
+  padding: 1rem 0;
   border-bottom: 1px solid red;
 `;
 
@@ -56,7 +56,7 @@ const Navbar = () => {
           </MobileElem>
           <FromMobileElem>
             <Link to='/'>
-              <img src={homeIcon} className='h-8 w-9' />
+              <Logo />
             </Link>
             <button onClick={handleOpenShoppingCart}>
               <div className='relative flex'>

@@ -6,6 +6,8 @@ import { fadeIn } from '../../animations/fadeIn';
 import { ShoppingCartItem } from '../../../entities/shopping-cart';
 import { useAppDispatch } from '../../../hooks/store';
 import useMediaQuery from '../../../utils/responsive/useMediaQuery';
+import { useCurrency } from '../../../modules/currency/hooks/useCurrency';
+import { priceFormatter } from '../../../utils/number';
 
 import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
@@ -65,7 +67,7 @@ const ProductName = styled.h3`
 
 const ProductPrice = styled.p`
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #333;
 `;
@@ -112,7 +114,7 @@ const ProductCard = (props: Props) => {
   const { image, title, price, description } = product;
 
   const isDesktop = useMediaQuery('(min-width: 768px)');
-
+  const currency = useCurrency();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -138,7 +140,7 @@ const ProductCard = (props: Props) => {
         <ProductName>{title}</ProductName>
         <div className='bg-neutral10 rounded-2xl p-2'>
           <ProductDescription>{description}</ProductDescription>
-          <ProductPrice>S/. {price}</ProductPrice>
+          <ProductPrice>{priceFormatter(price, currency ? currency.symbol : '')}</ProductPrice>
         </div>
       </ProductDetails>
     </ProductWrap>
