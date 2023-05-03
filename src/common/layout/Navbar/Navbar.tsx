@@ -13,7 +13,7 @@ import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
 const StyledNavbar = styled.nav`
   position: fixed;
-  z-index: 10;
+  z-index: 5;
   width: 100%;
   top: 100;
   background: #ff6e00;

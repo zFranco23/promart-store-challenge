@@ -35,7 +35,7 @@ const Control = styled.button<{ direction: 'right' | 'left' }>`
   transform: translateY(-50%);
   ${(props) => (props.direction === 'right' ? 'right: 25px' : 'left: 25px')};
   cursor: pointer;
-  z-index: 999;
+  z-index: 3;
 `;
 
 const Arrow = styled.div<{ direction: 'right' | 'left' }>`

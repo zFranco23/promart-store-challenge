@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
 
-import useShoppingCart from '../../hooks/useShoppingCart';
 import ItemsContent from '../ItemsContent/ItemsContent';
 import MainButton from '../../../../common/components/MainButton/MainButton';
+import Snackbar from '../../../../common/components/Snackbar/Snackbar';
+
 import { priceFormatter } from '../../../../utils/number';
 import { useCurrency } from '../../../currency/hooks/useCurrency';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
+import useShoppingCart from '../../hooks/useShoppingCart';
 
 import { actions as scActions } from '../../duck';
 
@@ -32,11 +35,12 @@ const Overlay = styled.div`
 `;
 
 const CartDrawer = () => {
-  const { items, totalPrice } = useShoppingCart();
-  const currency = useCurrency();
   const isOpen = useAppSelector((state) => state.shoppingCart.isOpenCartDrawer);
+  const currency = useCurrency();
   const dispatch = useAppDispatch();
+  const { items, totalPrice } = useShoppingCart();
 
+  const [showCheckoutSnackbar, setShowCheckoutSnackbar] = useState<boolean>(false);
   const hastCartItems = items.length > 0;
 
   const handleCloseDrawer = () => {
@@ -44,12 +48,17 @@ const CartDrawer = () => {
   };
 
   const handleCheckout = () => {
-    if (hastCartItems) console.log('Checkout process');
+    if (hastCartItems) setShowCheckoutSnackbar(true);
     else handleCloseDrawer();
   };
 
+  useEffect(() => {
+    if (!isOpen) setShowCheckoutSnackbar(false);
+  }, [isOpen]);
+
   return isOpen ? (
     <>
+      {showCheckoutSnackbar && <Snackbar type='success' message='Procesando compra....' />}
       <Overlay onClick={handleCloseDrawer} />
       <StyledDrawer>
         <div className='h-screen'>

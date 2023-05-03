@@ -24,7 +24,7 @@ const HeroContent = () => {
 
   return (
     <div className='mt-10'>
-      <h1 className='text-center mb-10 font-bold leading-tight text-5xl md:text-left'>
+      <h1 className='text-center mb-10 font-bold leading-tight text-4xl md:text-5xl md:text-left'>
         En{' '}
         <span className='text-orange'>
           <b>PROMART</b>
@@ -34,9 +34,9 @@ const HeroContent = () => {
         para ti y tu familia.
       </h1>
       <Slider height={isDesktop ? '325px' : '200px'}>
-        {BANNERS.map((b) => {
+        {BANNERS.map((b, idx: number) => {
           return (
-            <div className='h-full rounded-xl overflow-hiden'>
+            <div key={'banner-' + idx} className='h-full rounded-xl overflow-hiden'>
               <MobileElem>
                 <img className='h-full w-full rounded-xl' src={b.mobileUrl || b.desktopUrl} />
               </MobileElem>
