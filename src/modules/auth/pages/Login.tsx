@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-orangeLight'>
+    <div className='flex flex-col items-center justify-center h-screen w-screen m-w-full h-w-full overflow-hidden bg-orangeLight'>
       {isAuthenticating && <Loader />}
       {<Snackbar type='error' message={authError} />}
       <Logo color='orange' className='mb-20 scale-150' />
