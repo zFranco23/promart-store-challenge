@@ -128,9 +128,8 @@ const ProductCard = (props: Props) => {
       ...product,
       quantity,
     };
-    setQuantity(0);
     dispatch(scActions.addItemToCart(scItem));
-
+    setQuantity(1);
     if (isDesktop) {
       dispatch(scActions.openCartDrawer());
     } else navigate('/cart');
