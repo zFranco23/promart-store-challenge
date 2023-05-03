@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +9,8 @@ import { useAppDispatch } from '../../../hooks/store';
 import useMediaQuery from '../../../utils/responsive/useMediaQuery';
 import { useCurrency } from '../../../modules/currency/hooks/useCurrency';
 import { priceFormatter } from '../../../utils/number';
+
+import Quantity from '../../../modules/shopping-cart/components/Quantity/Quantity';
 
 import { actions as scActions } from '../../../modules/shopping-cart/duck';
 
@@ -118,17 +121,28 @@ const ProductCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [quantity, setQuantity] = useState<number>(0);
+
   const onAddToCart = () => {
     const scItem: ShoppingCartItem = {
       ...product,
-      quantity: 1,
+      quantity,
     };
+    setQuantity(0);
     dispatch(scActions.addItemToCart(scItem));
 
     if (isDesktop) {
       dispatch(scActions.openCartDrawer());
     } else navigate('/cart');
   };
+
+  const addOne = useCallback(() => {
+    setQuantity((prev) => prev + 1);
+  }, []);
+
+  const removeOne = useCallback(() => {
+    setQuantity((prev) => prev - 1);
+  }, []);
 
   return (
     <ProductWrap>
@@ -138,9 +152,12 @@ const ProductCard = (props: Props) => {
       <ProductImage src={image} alt={title} />
       <ProductDetails>
         <ProductName>{title}</ProductName>
-        <div className='bg-neutral10 rounded-2xl p-2'>
+        <div className='bg-neutral10 rounded-2xl p-4'>
           <ProductDescription>{description}</ProductDescription>
-          <ProductPrice>{priceFormatter(price, currency ? currency.symbol : '')}</ProductPrice>
+          <div className='flex justify-between items-center'>
+            <ProductPrice>{priceFormatter(price, currency ? currency.symbol : '')}</ProductPrice>
+            <Quantity quantity={quantity} addHandler={addOne} removeHandler={removeOne} />
+          </div>
         </div>
       </ProductDetails>
     </ProductWrap>
