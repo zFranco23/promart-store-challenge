@@ -16,7 +16,7 @@ const StyledDrawer = styled.div`
   width: 42.5rem;
   height: 100vh;
   background-color: #ffffff;
-  z-index: 10;
+  z-index: 9999;
 
   transition: ;
 `;
