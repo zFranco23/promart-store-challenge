@@ -1,13 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const rotate = keyframes`
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-`;
+import styled from 'styled-components';
+import { rotate } from '../../animations';
 
 const InlineLoader = styled.a`
   width: 48px;

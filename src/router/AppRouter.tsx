@@ -8,7 +8,7 @@ import ShoppingCart from '../modules/shopping-cart/pages/ShoppingCart';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-import { getSession } from '../modules/auth/duck';
+import { AUTH_LOCAL_STORAGE_KEY, getSession } from '../modules/auth/duck';
 import { getLocalStorageKey } from '../utils/storage';
 import { useAppDispatch } from '../hooks/store';
 
@@ -16,7 +16,7 @@ const AppRouter = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const previousToken = getLocalStorageKey('P_U_TOKEN');
+    const previousToken = getLocalStorageKey(AUTH_LOCAL_STORAGE_KEY);
     if (previousToken) {
       dispatch(getSession(previousToken));
     }
