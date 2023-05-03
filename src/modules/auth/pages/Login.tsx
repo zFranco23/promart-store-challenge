@@ -7,8 +7,9 @@ import Snackbar from '../../../common/components/Snackbar/Snackbar';
 
 import { useAppDispatch } from '../../../hooks/store';
 import { useAppSelector } from '../../../hooks/store';
-
 import { login } from '../duck';
+
+import Logo from '../../../common/components/PromartLogo/Logo';
 
 const Login = () => {
   const {
@@ -26,10 +27,11 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-gray-200'>
+    <div className='flex flex-col items-center justify-center h-screen bg-orangeLight'>
       {isAuthenticating && <Loader />}
       {<Snackbar type='error' message={authError} />}
-      <div className='bg-white border-2 border-neutral20 rounded-lg p-8 w-11/12 max-w-lg'>
+      <Logo color='orange' className='mb-20 scale-150' />
+      <div className='bg-white border-2 border-orange rounded-2xl p-8 w-11/12 max-w-lg'>
         <h1 className='text-4xl font-bold text-gray-900 mb-6'>Iniciar sesión</h1>
         <form noValidate>
           <div className='mb-4'>

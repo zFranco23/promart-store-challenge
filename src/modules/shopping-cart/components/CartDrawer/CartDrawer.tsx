@@ -1,19 +1,25 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
 
-import { actions as scActions } from '../../duck';
-import useShoppingCart from '../../hooks/useShoppingCart';
 import ItemsContent from '../ItemsContent/ItemsContent';
 import MainButton from '../../../../common/components/MainButton/MainButton';
+import Snackbar from '../../../../common/components/Snackbar/Snackbar';
+
+import { priceFormatter } from '../../../../utils/number';
+import { useCurrency } from '../../../currency/hooks/useCurrency';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
+import useShoppingCart from '../../hooks/useShoppingCart';
+
+import { actions as scActions } from '../../duck';
 
 const StyledDrawer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 40rem;
+  width: 42.5rem;
   height: 100vh;
   background-color: #ffffff;
-  z-index: 10;
+  z-index: 9999;
 
   transition: ;
 `;
@@ -29,10 +35,12 @@ const Overlay = styled.div`
 `;
 
 const CartDrawer = () => {
-  const { items, totalPrice } = useShoppingCart();
   const isOpen = useAppSelector((state) => state.shoppingCart.isOpenCartDrawer);
+  const currency = useCurrency();
   const dispatch = useAppDispatch();
+  const { items, totalPrice } = useShoppingCart();
 
+  const [showCheckoutSnackbar, setShowCheckoutSnackbar] = useState<boolean>(false);
   const hastCartItems = items.length > 0;
 
   const handleCloseDrawer = () => {
@@ -40,12 +48,17 @@ const CartDrawer = () => {
   };
 
   const handleCheckout = () => {
-    if (hastCartItems) console.log('Checkout process');
+    if (hastCartItems) setShowCheckoutSnackbar(true);
     else handleCloseDrawer();
   };
 
+  useEffect(() => {
+    if (!isOpen) setShowCheckoutSnackbar(false);
+  }, [isOpen]);
+
   return isOpen ? (
     <>
+      {showCheckoutSnackbar && <Snackbar type='success' message='Procesando compra....' />}
       <Overlay onClick={handleCloseDrawer} />
       <StyledDrawer>
         <div className='h-screen'>
@@ -71,7 +84,9 @@ const CartDrawer = () => {
                 {hastCartItems && (
                   <div className='flex justify-between mb-4'>
                     <p>Total</p>
-                    <p className='text-orange font-bold'>{totalPrice}</p>
+                    <p className='text-orange font-bold'>
+                      {priceFormatter(totalPrice, currency ? currency.symbol : '')}
+                    </p>
                   </div>
                 )}
                 <MainButton className='w-full' onClick={handleCheckout}>

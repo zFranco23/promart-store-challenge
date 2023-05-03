@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/store';
 
 import { actions as homeActions } from '../duck';
 import type { Category, Product } from '../../../entities';
+import HeroContent from '../components/HeroContent/HeroContent';
 
 const Home = () => {
   const { products, isFetching: isFetchingProducts } = useProducts();
@@ -39,7 +40,9 @@ const Home = () => {
   return (
     <PageLayout>
       {(isFetchingProducts || isFetchingCategories) && <Loader />}
+
       <div className='flex flex-col gap-10'>
+        <HeroContent />
         <CategoriesSection
           categories={categories}
           selectedCategories={selectedCategories}
