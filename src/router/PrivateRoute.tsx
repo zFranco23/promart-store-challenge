@@ -2,6 +2,7 @@ import { FC, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../modules/auth/hooks';
 import { getLocalStorageKey } from '../utils/storage';
+import { AUTH_LOCAL_STORAGE_KEY } from '../modules/auth/duck';
 
 import Loader from '../common/components/Loader/Loader';
 
@@ -17,7 +18,7 @@ const PrivateRoute: FC<Props> = ({ children }) => {
   const { isLoggedIn, isAuthenticating } = useAuth();
 
   const initialAuthDone = useMemo(() => {
-    const previousToken = getLocalStorageKey('P_U_TOKEN');
+    const previousToken = getLocalStorageKey(AUTH_LOCAL_STORAGE_KEY);
     return previousToken
       ? typeof isAuthenticating == 'boolean' && typeof isLoggedIn == 'boolean'
       : true;

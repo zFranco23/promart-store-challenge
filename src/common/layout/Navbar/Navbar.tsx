@@ -10,6 +10,8 @@ import { useAppDispatch } from '../../../hooks/store';
 import useShoppingCart from '../../../modules/shopping-cart/hooks/useShoppingCart';
 
 import { actions as scActions } from '../../../modules/shopping-cart/duck';
+import Menu from '../Menu/Menu';
+import { useCallback, useState } from 'react';
 
 const StyledNavbar = styled.nav`
   position: fixed;
@@ -22,12 +24,17 @@ const StyledNavbar = styled.nav`
 
 const Navbar = () => {
   const { items } = useShoppingCart();
-
   const dispatch = useAppDispatch();
+
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const handleOpenShoppingCart = () => {
     dispatch(scActions.openCartDrawer());
   };
+
+  const handleShowMenu = useCallback(() => {
+    setShowMenu((prev) => !prev);
+  }, []);
 
   const cartItemsCount = (
     <div className='absolute -right-2 -top-3 bg-black rounded-full w-7 h-7 flex items-center justify-center'>
@@ -37,10 +44,11 @@ const Navbar = () => {
 
   return (
     <StyledNavbar>
+      <Menu show={showMenu} handleShow={handleShowMenu} />
       <CenterContent>
         <div className='flex justify-between items-center'>
           <MobileElem>
-            <button className='flex items-center justify-center'>
+            <button className='flex items-center justify-center' onClick={() => setShowMenu(true)}>
               <i className='material-icons text-white'>menu</i>
             </button>
             <Link to='/'>

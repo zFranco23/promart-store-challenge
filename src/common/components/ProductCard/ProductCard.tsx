@@ -121,7 +121,7 @@ const ProductCard = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const onAddToCart = () => {
     const scItem: ShoppingCartItem = {
