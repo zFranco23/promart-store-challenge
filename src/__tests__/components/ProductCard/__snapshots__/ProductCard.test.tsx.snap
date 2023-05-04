@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product Card tests Product card render correctly 1`] = `
+<ContextProvider
+  value={
+    {
+      "getServerState": undefined,
+      "store": {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": {
+        "addNestedSub": [Function],
+        "getListeners": [Function],
+        "handleChangeWrapper": [Function],
+        "isSubscribed": [Function],
+        "notifyNestedSubs": [Function],
+        "trySubscribe": [Function],
+        "tryUnsubscribe": [Function],
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <Routes>
+      <Route
+        element={
+          <ProductCard
+            product={
+              {
+                "category": "c1",
+                "description": "d1",
+                "id": 1,
+                "image": "image",
+                "price": 5,
+                "rating": {
+                  "count": 5,
+                  "rate": 10,
+                },
+                "title": "title1",
+              }
+            }
+          />
+        }
+        path="*"
+      />
+    </Routes>
+  </BrowserRouter>
+</ContextProvider>
+`;
