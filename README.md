@@ -10,7 +10,10 @@ Este es un proyecto desarrollado con Vite, React, Typescript, ESLint y Prettier 
 
 ### Descripción del proyecto
 
-Este proyecto tiene como objetivo desarrollar una aplicación web que permita al usuario buscar productos de Promart y agregarlos al carrito de compras. La aplicación también permite al usuario ver el detalle de un producto y modificar la cantidad de unidades que desea agregar al carrito.
+Este proyecto tiene como objetivo desarrollar una aplicación web que permita agregar products al carrito de compras con una cantidad determinada. La aplicación también permite al usuario agregar/eliminar productos desde el carrito hasta antes del checkout.
+
+Se escogió la libreria de React para crear una interfaz rápida y robusta, como manejador de estado global usamos Redux junto redux-toolkit.
+Para el estilo del codigo usamos Prettier + Eslint + Prettier.
 
 ### Instalación
 
@@ -20,6 +23,9 @@ Este proyecto tiene como objetivo desarrollar una aplicación web que permita al
 4. El server estará corriendo en `http://localhost:5173`.
 
 ### Estructura general del proyecto
+
+Para la estructura del proyect se escogió una arquitectura basada en modulos, que nos permitirá escalar en base a nuevos features
+que pueda tener el ecommerce.
 
     .
     ├── assets                   # Archivos estáticos
@@ -57,5 +63,6 @@ Este proyecto fue desarrollado utilizando las siguientes tecnologías:
 ### Retos futuros
 
 - Integración con backend
+- Validación de la sesión (refrescar token/cookie)
 - Configura lógica de stock
 - Otros
