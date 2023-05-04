@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../modules/home/pages/Home';
 import Login from '../modules/auth/pages/Login';
 import ShoppingCart from '../modules/shopping-cart/pages/ShoppingCart';
+import Checkout from '../modules/checkout/pages/Checkout';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -46,6 +47,14 @@ const AppRouter = () => {
           element={
             <PrivateRoute>
               <ShoppingCart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/checkout'
+          element={
+            <PrivateRoute>
+              <Checkout />
             </PrivateRoute>
           }
         />

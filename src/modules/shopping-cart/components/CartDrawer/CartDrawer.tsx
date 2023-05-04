@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import ItemsContent from '../ItemsContent/ItemsContent';
 import MainButton from '../../../../common/components/MainButton/MainButton';
-import Snackbar from '../../../../common/components/Snackbar/Snackbar';
 
 import { priceFormatter } from '../../../../utils/number';
 import { useCurrency } from '../../../currency/hooks/useCurrency';
@@ -11,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
 import useShoppingCart from '../../hooks/useShoppingCart';
 
 import { actions as scActions } from '../../duck';
+import { useNavigate } from 'react-router-dom';
 
 const StyledDrawer = styled.div`
   position: fixed;
@@ -38,27 +37,22 @@ const CartDrawer = () => {
   const isOpen = useAppSelector((state) => state.shoppingCart.isOpenCartDrawer);
   const currency = useCurrency();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { items, totalPrice } = useShoppingCart();
 
-  const [showCheckoutSnackbar, setShowCheckoutSnackbar] = useState<boolean>(false);
-  const hastCartItems = items.length > 0;
+  const hasCartItems = items.length > 0;
 
   const handleCloseDrawer = () => {
     dispatch(scActions.closeCartDrawer());
   };
 
   const handleCheckout = () => {
-    if (hastCartItems) setShowCheckoutSnackbar(true);
-    else handleCloseDrawer();
+    if (hasCartItems) navigate('/checkout');
+    handleCloseDrawer();
   };
-
-  useEffect(() => {
-    if (!isOpen) setShowCheckoutSnackbar(false);
-  }, [isOpen]);
 
   return isOpen ? (
     <>
-      {showCheckoutSnackbar && <Snackbar type='success' message='Procesando compra....' />}
       <Overlay onClick={handleCloseDrawer} />
       <StyledDrawer>
         <div className='h-screen'>
@@ -73,15 +67,15 @@ const CartDrawer = () => {
 
                 <p className='text-center m-auto font-bold text-orange'>Mi carrito</p>
               </div>
-              {hastCartItems && (
+              {hasCartItems && (
                 <p className='font-bold mt-8'>
                   ¡Tienes {items.length} producto{items.length > 1 ? 's' : ''} en tu carrito!
                 </p>
               )}
-              <ItemsContent hasCartItems={hastCartItems} items={items} />
+              <ItemsContent hasCartItems={hasCartItems} items={items} />
 
               <div>
-                {hastCartItems && (
+                {hasCartItems && (
                   <div className='flex justify-between mb-4'>
                     <p>Total</p>
                     <p className='text-orange font-bold'>
@@ -90,7 +84,7 @@ const CartDrawer = () => {
                   </div>
                 )}
                 <MainButton className='w-full' onClick={handleCheckout}>
-                  {hastCartItems ? '¡Lo quiero!' : 'Ver productos'}
+                  {hasCartItems ? '¡Lo quiero!' : 'Ver productos'}
                 </MainButton>
               </div>
             </div>

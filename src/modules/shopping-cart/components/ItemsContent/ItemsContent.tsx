@@ -6,9 +6,10 @@ import type { ShoppingCartItem as SCItem } from '../../../../entities/shopping-c
 type Props = {
   hasCartItems: boolean;
   items: SCItem[];
+  readOnly?: boolean;
 };
 const ItemsContent = (props: Props) => {
-  const { hasCartItems, items } = props;
+  const { hasCartItems, items, readOnly } = props;
   const className = classNames('grow max-wfull overflow-auto mt-4 mb-8 p-4', {
     'flex items-center justify-center': !hasCartItems,
   });
@@ -18,7 +19,7 @@ const ItemsContent = (props: Props) => {
       {hasCartItems ? (
         <div className='flex flex-col gap-6'>
           {items.map((sc) => (
-            <ShoppingCartItem key={`sc-item-${sc.id}`} item={sc} />
+            <ShoppingCartItem readOnly={readOnly} key={`sc-item-${sc.id}`} item={sc} />
           ))}
         </div>
       ) : (

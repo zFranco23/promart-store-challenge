@@ -74,9 +74,10 @@ const ItemPrice = styled.span`
 
 type Props = {
   item: SCItem;
+  readOnly?: boolean;
 };
 
-const ShoppingCartItem = ({ item }: Props) => {
+const ShoppingCartItem = ({ item, readOnly = false }: Props) => {
   const { id, description, image, price, title, quantity } = item;
 
   const currency = useCurrency();
@@ -102,9 +103,11 @@ const ShoppingCartItem = ({ item }: Props) => {
 
   return (
     <CartItem>
-      <RemoveCartButton onClick={handleRemoveCartItem}>
-        <i className='material-icons text-white text-md'>close</i>
-      </RemoveCartButton>
+      {!readOnly && (
+        <RemoveCartButton onClick={handleRemoveCartItem}>
+          <i className='material-icons text-white text-md'>close</i>
+        </RemoveCartButton>
+      )}
       <ImageContainer>
         <ItemImage src={image} alt='item' />
       </ImageContainer>
@@ -113,11 +116,15 @@ const ShoppingCartItem = ({ item }: Props) => {
         <ItemDesc>{description}</ItemDesc>
         <div className='flex items-center justify-between mt-4'>
           <ItemPrice>{priceFormatter(price, currency ? currency.symbol : '')}</ItemPrice>
-          <Quantity
-            quantity={quantity}
-            addHandler={handleAddItem}
-            removeHandler={handleRemoveItem}
-          />
+          {readOnly ? (
+            <span>{quantity} uds.</span>
+          ) : (
+            <Quantity
+              quantity={quantity}
+              addHandler={handleAddItem}
+              removeHandler={handleRemoveItem}
+            />
+          )}
         </div>
       </ItemDetails>
     </CartItem>

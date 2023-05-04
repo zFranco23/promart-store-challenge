@@ -69,6 +69,7 @@ const Menu = ({ show, handleShow }: Props) => {
         <Content>
           <MenuItem disabled>Productos</MenuItem>
           <MenuItem disabled>Categorías</MenuItem>
+          <MenuItem disabled>Mis compras</MenuItem>
           {isLoggedIn && <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>}
         </Content>
       </Content>

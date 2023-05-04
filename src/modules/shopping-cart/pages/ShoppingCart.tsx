@@ -9,17 +9,17 @@ import { useCurrency } from '../../currency/hooks/useCurrency';
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-
-  const { items, totalPrice } = useShoppingCart();
   const currency = useCurrency();
+  const { items, totalPrice } = useShoppingCart();
+
   const handleGoBack = () => {
     navigate(-1);
   };
 
-  const hastCartItems = items.length > 0;
+  const hasCartItems = items.length > 0;
 
   const handleCheckout = () => {
-    if (hastCartItems) console.log('Checkout process');
+    if (hasCartItems) navigate('/checkout');
     else navigate('/');
   };
 
@@ -37,15 +37,15 @@ const ShoppingCart = () => {
 
               <p className='text-center m-auto font-bold text-orange'>Mi carrito</p>
             </div>
-            {hastCartItems && (
+            {hasCartItems && (
               <p className='font-bold mt-8'>
                 ¡Tienes {items.length} producto{items.length > 1 ? 's' : ''} en tu carrito!
               </p>
             )}
-            <ItemsContent hasCartItems={hastCartItems} items={items} />
+            <ItemsContent hasCartItems={hasCartItems} items={items} />
 
             <div>
-              {hastCartItems && (
+              {hasCartItems && (
                 <div className='flex justify-between mb-4'>
                   <p>Total</p>
                   <p className='text-orange font-bold'>
@@ -54,7 +54,7 @@ const ShoppingCart = () => {
                 </div>
               )}
               <MainButton className='w-full' onClick={handleCheckout}>
-                {hastCartItems ? '¡Lo quiero!' : 'Ver productos'}
+                {hasCartItems ? '¡Lo quiero!' : 'Ver productos'}
               </MainButton>
             </div>
           </div>

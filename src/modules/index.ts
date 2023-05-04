@@ -3,6 +3,7 @@ import productsReducer, { ProductsState } from './products/duck';
 import shoppingCartReducer, { ShoppingCartState } from './shopping-cart/duck';
 import homeReducer, { HomeState } from './home/duck';
 import currencyReducer, { CurrencyState } from './currency/duck';
+import checkoutReducer, { CheckoutState } from './checkout/duck';
 
 //Modules imports/exports centralized here.
 export interface RootState {
@@ -11,6 +12,7 @@ export interface RootState {
   shoppingCart: ShoppingCartState;
   home: HomeState;
   currency: CurrencyState;
+  checkout: CheckoutState;
 }
 
 export const rootReducer = {
@@ -19,4 +21,5 @@ export const rootReducer = {
   shoppingCart: shoppingCartReducer,
   home: homeReducer,
   currency: currencyReducer,
+  checkout: checkoutReducer,
 };

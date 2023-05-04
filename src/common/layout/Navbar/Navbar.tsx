@@ -17,9 +17,10 @@ const StyledNavbar = styled.nav`
   position: fixed;
   z-index: 5;
   width: 100%;
-  top: 100;
+  top: 0;
   background: #ff6e00;
   padding: 1rem 0;
+  height: 7rem;
 `;
 
 const Navbar = () => {

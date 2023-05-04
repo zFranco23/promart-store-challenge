@@ -14,10 +14,10 @@ type Props = {
  */
 const PageLayout = ({ children }: Props) => {
   return (
-    <div className='inline-block'>
+    <div>
       <Navbar />
       <CartDrawer />
-      <div className='w-full mt-20'>
+      <div className='w-full mt-28'>
         <CenterContent>{children}</CenterContent>
       </div>
     </div>
