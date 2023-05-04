@@ -39,12 +39,6 @@ que pueda tener el ecommerce.
     ├── modules                  # Modulos de la aplicación
     └── _tests__
 
-- `src/components`: En esta carpeta se encuentran todos los componentes de la aplicación.
-- `src/interfaces`: En esta carpeta se encuentran todas las interfaces utilizadas en el proyecto.
-- `src/pages`: En esta carpeta se encuentran las páginas de la aplicación.
-- `src/services`: En esta carpeta se encuentran todos los servicios utilizados en la aplicación.
-- `src/utils`: En esta carpeta se encuentran todas las funciones de utilidad utilizadas en la aplicación.
-
 ### Tecnologías utilizadas
 
 Este proyecto fue desarrollado utilizando las siguientes tecnologías:
