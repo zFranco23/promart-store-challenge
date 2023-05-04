@@ -10,6 +10,7 @@ import { useAppSelector } from '../../../hooks/store';
 import { login } from '../duck';
 
 import Logo from '../../../common/components/PromartLogo/Logo';
+import { useState } from 'react';
 
 const Login = () => {
   const {
@@ -18,6 +19,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const [showPassword, setShowPassword] = useState<boolean>(true);
   const isAuthenticating = useAppSelector((state) => state.auth.isAuthenticating);
   const authError = useAppSelector((state) => state.auth.authError);
   const dispatch = useAppDispatch();
@@ -49,7 +51,7 @@ const Login = () => {
           <div className='mb-6'>
             <Input
               disabled={isAuthenticating}
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               name='password'
               label='Contraseña'
               placeholder='Contraseña'
@@ -64,6 +66,17 @@ const Login = () => {
                   message: 'Mínimo 6 caracteres',
                 },
               })}
+              iconEnd={
+                <button
+                  className='flex items-center justify-center'
+                  type='button'
+                  onClick={() => setShowPassword((ps) => !ps)}
+                >
+                  <i className='material-icons text-orange'>
+                    {showPassword ? 'visibility' : 'visibility_off'}
+                  </i>
+                </button>
+              }
             />
           </div>
           <MainButton

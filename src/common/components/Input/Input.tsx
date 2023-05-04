@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { FieldErrors, UseFormRegisterReturn } from 'react-hook-form';
 
-type props = {
+type Props = {
   name: string;
   label: string;
   formRef: UseFormRegisterReturn;
@@ -10,9 +10,10 @@ type props = {
   errors?: FieldErrors;
   className?: string;
   disabled?: boolean;
+  iconEnd?: JSX.Element;
 };
 
-function Input(props: props) {
+function Input(props: Props) {
   const {
     name,
     label,
@@ -22,6 +23,7 @@ function Input(props: props) {
     errors,
     className,
     disabled = false,
+    iconEnd,
   } = props;
 
   const innerClassName = classNames(
@@ -29,7 +31,7 @@ function Input(props: props) {
     'block w-full py-3 px-4 border border-2 border-neutral40',
     'rounded-lg text-gray-900 placeholder-gray-500',
     'transition duration-300',
-    { 'border-error ocus:border-error': errors?.[name] },
+    { 'border-error focus:border-error': errors?.[name] },
     className,
   );
 
@@ -38,14 +40,19 @@ function Input(props: props) {
       <label htmlFor={name} className='text-xl font-semibold text-neutral60 mb-8'>
         {label}
       </label>
-      <input
-        disabled={disabled}
-        type={type}
-        id={name}
-        className={innerClassName}
-        placeholder={placeholder}
-        {...formRef}
-      />
+      <div className='relative'>
+        <input
+          disabled={disabled}
+          type={type}
+          id={name}
+          className={innerClassName}
+          placeholder={placeholder}
+          {...formRef}
+        />
+        {iconEnd && (
+          <div className='absolute inset-y-0 right-0 flex items-center pr-3'>{iconEnd}</div>
+        )}
+      </div>
       {errors?.[name] && (
         <p className='text-red-500 mt-1 text-error text-xl font-bold'>
           <>{errors[name]?.message}</>
