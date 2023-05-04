@@ -19,7 +19,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const [showPassword, setShowPassword] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const isAuthenticating = useAppSelector((state) => state.auth.isAuthenticating);
   const authError = useAppSelector((state) => state.auth.authError);
   const dispatch = useAppDispatch();
