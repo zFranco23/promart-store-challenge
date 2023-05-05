@@ -19,8 +19,9 @@ Para el estilo del codigo usamos Prettier + Eslint + Prettier.
 
 1. Clonar el repositorio.
 2. Ejecutar `npm install` para instalar todas las dependencias del proyecto.
-3. Ejecutar `npm run dev` para ejecutar el servidor local de desarrollo.
-4. El server estará corriendo en `http://localhost:5173`.
+4. Crear un archivo env y agregar tu base url, ejemplo : `VITE_BASE_API_URL = https://fakestoreapi.com`
+5. Ejecutar `npm run dev` para ejecutar el servidor local de desarrollo.
+6. El server estará corriendo en `http://localhost:5173`.
 
 ### Estructura general del proyecto
 
